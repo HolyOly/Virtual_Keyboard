@@ -51,6 +51,7 @@ div {
 .general-symbol {
   display: block;
   position: absolute;
+  color: black;
 }
 
 .secondary-symbol {
