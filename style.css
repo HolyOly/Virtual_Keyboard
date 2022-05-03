@@ -1,0 +1,61 @@
+body {
+  margin: 0 auto;
+  text-align: center;
+}
+
+div {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.text-area {
+  display: block;
+  position: relative;
+  margin-top: 40px;
+  text-align: center;
+  width: 600px;
+  height: 100px;
+  background-color: aliceblue;
+}
+
+.kb-block {
+  display: grid;
+  grid-template-columns: repeat(14, 40px);
+  grid-template-rows: repeat(5, 40px);
+  gap: 15px;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+  grid-auto-flow: row;
+  margin-top: 40px;
+  position: relative;
+  max-width: 820px;
+  height: 320px;
+  background-color: #b9b7b7;
+  border-radius: 5px;
+}
+
+.btn {
+  display: grid;
+  position: relative;
+  background-color: gray;
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  align-items: center;
+  justify-items: center;
+}
+
+.general-symbol {
+  display: block;
+  position: absolute;
+}
+
+.secondary-symbol {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
