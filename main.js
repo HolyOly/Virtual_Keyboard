@@ -1,9 +1,7 @@
-
     import { btnContent } from './modules/variables.js';
-        // import {btnContent} from '/modules/variables';
-
-    let fon = document.body.style.background = 'red';
-
+    
+    //let fon = document.body.style.background = 'red';
+    
     // create textarea
     let textArea = document.createElement('div');
     textArea.classList.add('text-area');
@@ -15,7 +13,7 @@
     document.body.append(keyBoardBlock);
 
     // create buttons
-    let n  = 65;
+    let n  = 70;
 
     for (let i = 0; i < n; i++) {
         let div = document.createElement('div');
@@ -52,6 +50,7 @@
     }
     createDivGeneral();
 
+    
     //add Little symbol to button
     function createDivSecondary() {
         let arrSecSym = [];
@@ -68,10 +67,32 @@
         for(let i = 0; i < arrSecSym.length; i++) {
             arrSecSym[i].setAttribute('sec', 'sec');
             arrSecSym[i].innerHTML = btnContent[i]['sec'];
+            if (btnContent[i]['sec'] == undefined || btnContent[i]['sec'] == null) {
+                //arrSecSym[i].innerHTML !== btnContent[i]['sec'];
+                arrSecSym[i].removeAttribute('sec');
+                arrSecSym[i].innerHTML = '';
+            }
         }
     }
     createDivSecondary();
 
+    // add id
+    function setIdAttribute() {
+        for (let i = 0; i < buttonArr.length; i++) {
+            buttonArr[i].setAttribute('id', `${i}`);
+        }
+    }
+    setIdAttribute();
+
+
+
+    // styles
+    let arrLeft = document.getElementById('67');
+    arrLeft.style.transform = "rotate(90deg)";
+
+    let arrRight = document.getElementById('69');
+    arrRight.style.transform = "rotate(270deg)";
+    
     //console.log(buttonArr)
     //console.log(btnContent.length)
 
