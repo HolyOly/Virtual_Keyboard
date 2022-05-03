@@ -1,11 +1,18 @@
     import { btnContent } from './modules/variables.js';
     
     //let fon = document.body.style.background = 'red';
+
     
+
     // create textarea
     let textArea = document.createElement('div');
+    let formText = document.createElement('form');
+    let textAreaIntoForm = document.createElement('textarea');
+
     textArea.classList.add('text-area');
     document.body.append(textArea);
+    formText.append(textAreaIntoForm);
+    textArea.append(formText);
 
     // create block for buttons
     let keyBoardBlock = document.createElement('div');
@@ -95,6 +102,18 @@
     
     //console.log(buttonArr)
     //console.log(btnContent.length)
+
+    function addClickListener() {
+        //AreaIntoForm.innerText = buttonArr[i].getAttribute('gen');
+        // let textArr = [];
+        // textAreaIntoForm.innerHTML = "5";
+        // return textArr.join('');
+        
+    }
+
+    for(let i = 0; i < buttonArr.length; i++) {
+        buttonArr[i].addEventListener("click", addClickListener);
+    }
 
 
 

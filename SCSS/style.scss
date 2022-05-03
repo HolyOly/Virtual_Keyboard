@@ -20,6 +20,19 @@ div {
     border-radius: 5px;
     box-shadow: -4px 4px 14px -2px rgba(34, 60, 80, 0.40);
 }
+textarea {
+    width: 600px;
+    height: 100px;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    &:active, &:hover, &:focus {
+        outline: 3;
+        outline-color: rgba(220, 20, 60, 0.075);
+        outline-offset: 2;
+    }
+}
 .kb-block {
     display: grid;
     grid-template-columns: repeat(14, 40px);
@@ -52,7 +65,7 @@ div {
     transition: 1s;
     box-shadow: -4px 4px 14px -2px rgba(34, 60, 80, 0.30);
     &:hover {
-        background-color: rgba(3, 3, 12, 0.541);
+        background-color: rgba(218, 218, 233, 0.11);
     }
 }
 .general-symbol {
@@ -103,7 +116,9 @@ div {
 }
 .btn[id = "59"] {
     width: 350px !important;
-    //margin-left: -20px;
+    &:hover {
+        background-color: rgba(218, 218, 233, 0.11);
+    }
 }
 .btn[id = "60"] {
     opacity: 0;
