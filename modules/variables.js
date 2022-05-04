@@ -165,10 +165,12 @@ export let btnContent = [
     },
     {
         'gen': 'SHIFT',
+        'sym': ''
         //'sec': '1'
     },
     {
         'gen': 'SHIFT',
+        'sym': ''
         //'sec': '1'
     },
     {
@@ -222,6 +224,7 @@ export let btnContent = [
     {
         'gen': 'SHIFT',
         //'sec': '~'
+        'sym': ''
     },
     {
         'gen': 'Ctrl',

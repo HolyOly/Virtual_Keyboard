@@ -125,28 +125,48 @@
     }
 
     // buttonArr.forEach((item, i, arr) => {
+        
         keyBoardBlock.onclick = f;
         function f(event) {
+            textAreaIntoForm.focus();
+            // var rng= textAreaIntoForm.createTextRange();
+            // rng.collapse()
+            // rng.moveStart("character");
+            // rng.select();
+
+
             let td = event.target.closest('.btn'); // (1)
             let tdID = td.getAttribute('id');
             let tdChild = td.children[0];
             let char = btnContent[tdID].gen;
-            if (!td) return; // (2)
+            if (!td) {
+                arrText.push('');
+            }; // (2)
+            if (char.length > 1) {
+                if (char == 'SHIFT') {
+                    char = btnContent[tdID].sym;
+                    arrText.push(char.toLowerCase());
+                    textAreaIntoForm.value = arrText.join('');
+                }
+            }
+            //if (!keyBoardBlock.contains(td)) {arrText.push('')}; // (3)
+            else {
+                 // (4)
+                arrText.push(char.toLowerCase());
+                strText = strText + char;
+                textAreaIntoForm.value = arrText.join('');
+            }
+            console.log(char);
+            
+            //return char;
+        };
 
-            if (!keyBoardBlock.contains(td)) return; // (3)
-
-            console.log(char); // (4)
-            arrText.push(char);
-            strText = strText + char;
-            return char;
-          };
-    // })
-
-    //textAreaIntoForm.value = arrText.join('')
-//console.log(textAreaIntoForm.value)
-arrText.push(f);
+    
+//arrText.push(f);
+textAreaIntoForm.value = arrText.join('');
 console.log(arrText);
-console.log(strText)
+//console.log(strText)
+
 
 
 
