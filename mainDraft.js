@@ -107,104 +107,198 @@
     let arrRight = document.getElementById('69');
     arrRight.style.transform = "rotate(270deg)";
     
-    //console.log(buttonArr)
-    //console.log(btnContent.length)
+   
+    // add symbols by click
+    keyBoardBlock.onclick = f;
+    function f(event) {
+        textAreaIntoForm.focus();
 
-    function addClickListener() {
-        textAreaIntoForm.value = '';
-        
-        // for (let i = 0; i < buttonArr[i]; i++) {
-            
-           
-        // }
-        
-    }
+        let td = event.target.closest('.btn'); // (1)
+        let tdID = td.getAttribute('id');
+        let tdChild = td.children[0];
+        let char = btnContent[tdID].gen;
 
-    for(let i = 0; i < buttonArr.length; i++) {
-        buttonArr[i].addEventListener("click", addClickListener);
-    }
-
-    // buttonArr.forEach((item, i, arr) => {
-        
-        keyBoardBlock.onclick = f;
-        function f(event) {
-            textAreaIntoForm.focus();
-
-            let td = event.target.closest('.btn'); // (1)
-            let tdID = td.getAttribute('id');
-            let tdChild = td.children[0];
-            let char = btnContent[tdID].gen;
-
-            if (!td) {
-                arrText.push('');
-            }; 
-            if (char.length > 1) {
-                if (char == 'SHIFT') {
-                    char = btnContent[tdID].sym;
-                    arrText.push(char.toLowerCase());
-                    textAreaIntoForm.value = arrText.join('');
-                }
-                if (char == 'Back space') {
-                    char = btnContent[tdID].sym;
-                    arrText.pop();
-                    textAreaIntoForm.value = arrText.join('');
-                }
-                if (char == 'ENTER') {
-                    char = btnContent[tdID].sym;
-                    arrText.push(char.toLowerCase());
-                    textAreaIntoForm.value = arrText.join('');
-                }
-                if (char == 'DEL') {
-                    char = btnContent[tdID].sym;
-                    arrText.pop();
-                    textAreaIntoForm.value = arrText.join('');
-                }
-                if (char == 'Caps Lock') {
-                    char = btnContent[tdID].sym;
-                    arrText.push(char.toUpperCase());
-                    textAreaIntoForm.value = arrText.join('');
-                }
-                if (char == btnContent[67].gen) {
-                    // arrow <-
-                    char = '';
-                    textAreaIntoForm.value = arrText.join('');
-                    textAreaIntoForm.focus();
-                    
-                    let caretPos = arrText.length - count;
-
-                    console.log(count)
-                    if (count > arrText.length) {
-                        caretPos = 0;
-                        count = 0;
-                    }
-                    textAreaIntoForm.setSelectionRange(caretPos, caretPos);
-                }
-                if (char == btnContent[69].gen) {
-                    // arrow ->
-                    char = '';
-                    textAreaIntoForm.value = arrText.join('');
-                    textAreaIntoForm.focus();
-                    
-                    let caretPos = arrText.length + count;
-
-                    console.log(count)
-                    if (count > arrText.length) {
-                        caretPos = arrText.length;
-                        count = arrText.length;
-                    }
-                    textAreaIntoForm.setSelectionRange(caretPos, caretPos);
-                }
-            }
-            //if (!keyBoardBlock.contains(td)) {arrText.push('')}; // (3)
-            else {
+        if (!td) {
+            arrText.push('');
+        }; 
+        if (char.length > 1) {
+            if (char == 'SHIFT') {
+                char = btnContent[tdID].sym;
                 arrText.push(char.toLowerCase());
-                strText = strText + char;
                 textAreaIntoForm.value = arrText.join('');
             }
-            console.log(char);
-        };
+            if (char == 'Tab') {
+                char = btnContent[tdID].sym;
+                arrText.push(char.toLowerCase());
+                textAreaIntoForm.value = arrText.join('');
+            }
+            if (char == 'Back space') {
+                char = btnContent[tdID].sym;
+                arrText.pop();
+                textAreaIntoForm.value = arrText.join('');
+            }
+            if (char == 'ENTER') {
+                char = btnContent[tdID].sym;
+                arrText.push(char.toLowerCase());
+                textAreaIntoForm.value = arrText.join('');
+            }
+            if (char == 'DEL') {
+                char = btnContent[tdID].sym;
+                arrText.pop();
+                textAreaIntoForm.value = arrText.join('');
+            }
+            if (char == 'Caps Lock') {
+                char = btnContent[tdID].sym;
+                arrText.push(char.toUpperCase());
+                textAreaIntoForm.value = arrText.join('');
+            }
+            if (char == btnContent[67].gen) {
+                // arrow <-
+                char = '';
+                textAreaIntoForm.value = arrText.join('');
+                textAreaIntoForm.focus();
+                
+                let caretPos = arrText.length - count;
 
-    
+                console.log(count)
+                if (count > arrText.length) {
+                    caretPos = 0;
+                    count = 0;
+                }
+                textAreaIntoForm.setSelectionRange(caretPos, caretPos);
+            }
+            if (char == btnContent[69].gen) {
+                // arrow ->
+                char = '';
+                textAreaIntoForm.value = arrText.join('');
+                textAreaIntoForm.focus();
+                
+                let caretPos = arrText.length + count;
+
+                console.log(count)
+                if (count > arrText.length) {
+                    caretPos = arrText.length;
+                    count = arrText.length;
+                }
+                textAreaIntoForm.setSelectionRange(caretPos, caretPos);
+            }
+        }
+        //if (!keyBoardBlock.contains(td)) {arrText.push('')}; // (3)
+        else {
+            arrText.push(char.toLowerCase());
+            strText = strText + char;
+            textAreaIntoForm.value = arrText.join('');
+        }
+        console.log(char);
+    };
+
+
+    function keyListener(event) {
+        textAreaIntoForm.focus();
+
+        console.log('Key: ', event.key);
+        console.log('keyCode: ', event.keyCode);
+        let ek = event.key;
+
+        for (let i = 0; i < 13; i++) {
+            if (ek == btnContent[i]['gen'] || ek == btnContent[i]['gen'].toLowerCase() || ek == btnContent[i]['sec'] || ek == btnContent[i]['sec'].toLowerCase()) {
+                buttonArr[i].classList.add('back');
+                
+            }
+        }
+        for (let i = 15; i < 27; i++) {
+            if (ek == btnContent[i]['gen'] || ek == btnContent[i]['gen'].toLowerCase() || ek == btnContent[i]['gen'].toUpperCase()  || ek == btnContent[i]['sec'] || ek == btnContent[i]['sec'].toLowerCase()) {
+                buttonArr[i].classList.add('back');
+                
+            }
+        }
+        for (let i = 29; i < 40; i++) {
+            if (ek == btnContent[i]['gen'] || ek == btnContent[i]['gen'].toLowerCase() || ek == btnContent[i]['gen'].toUpperCase()  || ek == btnContent[i]['sec'] || ek == btnContent[i]['sec'].toLowerCase()) {
+                buttonArr[i].classList.add('back');
+                
+            }
+        }
+        for (let i = 44; i < 54; i++) {
+            if (ek == btnContent[i]['gen'] || ek == btnContent[i]['gen'].toLowerCase() || ek == btnContent[i]['gen'].toUpperCase()  || ek == btnContent[i]['sec'] || ek == btnContent[i]['sec'].toLowerCase()) {
+                buttonArr[i].classList.add('back');
+                
+            }
+        }
+        if (ek == 'Backspace') {
+            buttonArr[13].classList.add('back');
+        }
+        if (ek == 'Tab') {
+            buttonArr[14].classList.add('back');
+        }
+        if (ek == 'Delete') {
+            buttonArr[27].classList.add('back');
+        }
+        if (ek == 'CapsLock') {
+            buttonArr[28].classList.add('back');
+        }
+        if (ek == 'Enter') {
+            buttonArr[40].classList.add('back');
+        }
+        if (ek == 'Shift') {
+            buttonArr[42].classList.add('back');
+            buttonArr[55].classList.add('back');
+        }
+        if (ek == 'Control') {
+            buttonArr[56].classList.add('back');
+            buttonArr[66].classList.add('back');
+        }
+        if (ek == 'Super' || ek == 'Command' || ek == 'Windows' || ek == 'Win' || ek == 'MetaLeft' || ek == 'MetaRight') {
+            buttonArr[57].classList.add('back');
+        }
+        if (ek == 'Alt') {
+            buttonArr[58].classList.add('back');
+            buttonArr[65].classList.add('back');
+        }
+        if (ek == 'Space' || ek == ' ') {
+            buttonArr[59].classList.add('back');
+            buttonArr[60].classList.add('back');
+            buttonArr[61].classList.add('back');
+            buttonArr[62].classList.add('back');
+            buttonArr[63].classList.add('back');
+            buttonArr[64].classList.add('back');
+        }
+
+        //arrow
+        if (ek == 'ArrowUp') {
+            buttonArr[54].classList.add('back');
+        }
+        if (ek == 'ArrowRight') {
+            buttonArr[69].classList.add('back');
+        }
+        if (ek == 'ArrowDown') {
+            buttonArr[68].classList.add('back');
+        }
+        if (ek == 'ArrowLeft') {
+            buttonArr[67].classList.add('back');
+        }
+
+        // toggle language
+        if (ek == 'Alt' && ek == 'Shift') {
+            buttonArr[58].classList.add('back');
+            buttonArr[65].classList.add('back');
+            buttonArr[42].classList.add('back');
+            buttonArr[55].classList.add('back'); 
+            
+            alert('hi')
+        }
+    }
+
+    // kill keyListener background
+    function keyListenerUP() {
+        for (let i = 0; i < buttonArr.length; i++) {
+                setTimeout(() => (buttonArr[i].classList.remove('back')), 300);
+        }
+    }
+
+    document.addEventListener('keydown', keyListener);
+    document.addEventListener('keyup', keyListenerUP);
+
+
 
     textAreaIntoForm.value = arrText.join('');
     console.log(arrText);

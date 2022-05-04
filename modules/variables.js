@@ -58,6 +58,7 @@ export let btnContent = [
     {
         'gen': 'Tab',
         //'sec': '1'
+        'sym': '    ',
     },
     {
         'gen': 'Q',
@@ -88,6 +89,10 @@ export let btnContent = [
         'sec': 'Г'
     },
     {
+        'gen': 'I',
+        'sec': 'Ш'
+    },
+    {
         'gen': 'O',
         'sec': 'Щ'
     },
@@ -102,10 +107,6 @@ export let btnContent = [
     {
         'gen': ']',
         'sec': 'Ъ'
-    },
-    {
-        'gen': '\\',
-        'sec': '|'
     },
     {
         'gen': 'DEL',
@@ -177,7 +178,7 @@ export let btnContent = [
         //'sec': '1'
     },
     {
-        'gen': '\\',
+        'gen': '|',
         //'sec': '~'
     },
     {

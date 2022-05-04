@@ -69,7 +69,7 @@ textarea:active, textarea:hover, textarea:focus {
   align-items: center;
   justify-items: center;
   transition: 1s;
-  box-shadow: -4px 4px 14px -2px rgba(34, 60, 80, 0.3);
+  box-shadow: -4px 4px 14px -2px rgba(34, 60, 80, 0.6);
 }
 
 .btn:hover {
@@ -156,4 +156,8 @@ textarea:active, textarea:hover, textarea:focus {
 
 .btn[id="64"] {
   opacity: 0;
+}
+
+.back {
+  background-color: rgba(50, 205, 179, 0.274);
 }
