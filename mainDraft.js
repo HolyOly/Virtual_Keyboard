@@ -2,7 +2,7 @@
     
     //let fon = document.body.style.background = 'red';
 
-    
+    let count = 0;
     let arrText = [];
     let strText = '';
     // create textarea
@@ -129,43 +129,96 @@
         keyBoardBlock.onclick = f;
         function f(event) {
             textAreaIntoForm.focus();
-            // var rng= textAreaIntoForm.createTextRange();
-            // rng.collapse()
-            // rng.moveStart("character");
-            // rng.select();
-
 
             let td = event.target.closest('.btn'); // (1)
             let tdID = td.getAttribute('id');
             let tdChild = td.children[0];
             let char = btnContent[tdID].gen;
+
             if (!td) {
                 arrText.push('');
-            }; // (2)
+            }; 
             if (char.length > 1) {
                 if (char == 'SHIFT') {
                     char = btnContent[tdID].sym;
                     arrText.push(char.toLowerCase());
                     textAreaIntoForm.value = arrText.join('');
                 }
+                if (char == 'Back space') {
+                    char = btnContent[tdID].sym;
+                    arrText.pop();
+                    textAreaIntoForm.value = arrText.join('');
+                }
+                if (char == 'ENTER') {
+                    char = btnContent[tdID].sym;
+                    arrText.push(char.toLowerCase());
+                    textAreaIntoForm.value = arrText.join('');
+                }
+                if (char == 'DEL') {
+                    char = btnContent[tdID].sym;
+                    arrText.pop();
+                    textAreaIntoForm.value = arrText.join('');
+                }
+                if (char == 'Caps Lock') {
+                    char = btnContent[tdID].sym;
+                    arrText.push(char.toUpperCase());
+                    textAreaIntoForm.value = arrText.join('');
+                }
+                if (char == btnContent[67].gen) {
+                    // arrow <-
+                    char = '';
+                    textAreaIntoForm.value = arrText.join('');
+                    textAreaIntoForm.focus();
+                    
+                    let caretPos = arrText.length - count;
+
+                    console.log(count)
+                    if (count > arrText.length) {
+                        caretPos = 0;
+                        count = 0;
+                    }
+                    textAreaIntoForm.setSelectionRange(caretPos, caretPos);
+                }
+                if (char == btnContent[69].gen) {
+                    // arrow ->
+                    char = '';
+                    textAreaIntoForm.value = arrText.join('');
+                    textAreaIntoForm.focus();
+                    
+                    let caretPos = arrText.length + count;
+
+                    console.log(count)
+                    if (count > arrText.length) {
+                        caretPos = arrText.length;
+                        count = arrText.length;
+                    }
+                    textAreaIntoForm.setSelectionRange(caretPos, caretPos);
+                }
             }
             //if (!keyBoardBlock.contains(td)) {arrText.push('')}; // (3)
             else {
-                 // (4)
                 arrText.push(char.toLowerCase());
                 strText = strText + char;
                 textAreaIntoForm.value = arrText.join('');
             }
             console.log(char);
-            
-            //return char;
         };
 
     
-//arrText.push(f);
-textAreaIntoForm.value = arrText.join('');
-console.log(arrText);
-//console.log(strText)
+
+    textAreaIntoForm.value = arrText.join('');
+    console.log(arrText);
+
+    function counter() {
+        count+=1;
+    }
+    
+    function counterR() {
+        count-=1;
+    }
+    arrLeft.addEventListener('click', counter);
+    arrRight.addEventListener('click', counterR);
+
 
 
 

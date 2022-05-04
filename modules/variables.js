@@ -114,6 +114,8 @@ export let btnContent = [
     {
         'gen': 'Caps Lock',
         //'sec': '1'
+        'sym': ''
+
     },
     {
         'gen': 'A',
@@ -162,6 +164,7 @@ export let btnContent = [
     {
         'gen': 'ENTER',
         //'sec': '1'
+        'sym': `\n`
     },
     {
         'gen': 'SHIFT',
@@ -272,6 +275,7 @@ export let btnContent = [
     },
     {
         'gen': '&#9660;',
+        'sym': 'left'
         //'sec': '1'
     },
     {
@@ -280,6 +284,7 @@ export let btnContent = [
     },
     {
         'gen': '&#9660;',
+        'sym': 'right'
         //'sec': '~'
     },
     {
