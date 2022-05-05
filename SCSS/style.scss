@@ -83,7 +83,16 @@ textarea {
     top: 2px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    color: black;
     font-size: 0.8rem;
+}
+.changeLangGen {
+    font-weight: 300 !important;
+    color: rgba(19, 14, 14, 0.267) !important;
+}
+.changeLangSec {
+    font-weight: 500 !important;
+    color: rgb(133, 21, 21) !important;
 }
 .btn[id = "13"] {
     width: 70px !important;

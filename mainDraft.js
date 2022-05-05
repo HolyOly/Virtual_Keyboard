@@ -1,10 +1,10 @@
     import { btnContent } from './modules/variables.js';
     
-    //let fon = document.body.style.background = 'red';
-
     let count = 0;
     let arrText = [];
     let strText = '';
+
+    
     // create textarea
     let textArea = document.createElement('div');
     let formText = document.createElement('form');
@@ -98,7 +98,8 @@
     }
     setIdAttribute();
 
-
+    let gs = document.getElementsByClassName('general-symbol');
+    let ss = document.getElementsByClassName('secondary-symbol');
 
     // styles
     let arrLeft = document.getElementById('67');
@@ -113,11 +114,19 @@
     function f(event) {
         textAreaIntoForm.focus();
 
-        let td = event.target.closest('.btn'); // (1)
+        let td = event.target.closest('.btn'); 
+        console.log(td.children);
         let tdID = td.getAttribute('id');
-        let tdChild = td.children[0];
         let char = btnContent[tdID].gen;
 
+        if (gs[18].classList.contains('changeLangGen') || ss[22].classList.contains('changeLangSec') ) {
+            if (btnContent[tdID].sec == undefined) {
+            }
+            else {
+                char = btnContent[tdID].sec;
+            }
+        }
+        
         if (!td) {
             arrText.push('');
         }; 
@@ -193,35 +202,142 @@
     };
 
 
+
+    // shift + alt одновременное нажатие
+    function runOnKeys(func, ...codes) {
+        let pressed = new Set();
+
+        document.addEventListener('keydown', function(event) {
+            pressed.add(event.code);
+
+            for (let code of codes) { 
+                if (!pressed.has(code)) {
+                return;
+                }
+            }
+
+            pressed.clear();
+            func();
+        });
+
+        document.addEventListener('keyup', function(event) {
+            pressed.delete(event.code);
+        });
+    }
+
+    
+    function changeLanguage() {
+        //alert("Привет!");
+        buttonArr[58].classList.add('back');
+        buttonArr[65].classList.add('back');
+        buttonArr[42].classList.add('back');
+        buttonArr[55].classList.add('back'); 
+
+        // let gs = document.getElementsByClassName('general-symbol');
+        // let ss = document.getElementsByClassName('secondary-symbol');
+        
+        for(let i = 15; i < 54; i++) {
+            if (i == 27 || i == 28|| i == 40 || i == 42) {
+                gs[i].classList.add('general-symbol');
+            }
+            else {gs[i].classList.toggle('changeLangGen');}
+            
+        }
+        for(let i = 15; i < ss.length; i++) {
+            ss[i].classList.toggle('changeLangSec');
+        }
+
+
+    }
+    runOnKeys(
+        changeLanguage,
+        'AltLeft',
+        'ShiftLeft'
+    );
+    // runOnKeys(
+    //     changeLanguage,
+    //     'ShiftLeft',
+    //     'AltLeft'
+    // );
+    // runOnKeys(
+    //     changeLanguage,
+    //     'AltRight',
+    //     'ShiftRight'
+    // );
+    // runOnKeys(
+    //     changeLanguage,
+    //     'ShiftRight',
+    //     'AltRight'
+    // );
+    
+    //
+    
+
+    let INPUT = [];
+    let KEY = ['AltLeft', 'ShiftLeft']; 
+    let KEY_REVERSE = ['AltLeft', 'ShiftLeft']; 
+
+    let KEY_RIGHT = ['ShiftRight', 'AltRight']; 
+    let KEY_REVERSE_RIGHT = ['AltRight', 'ShiftRight'];
+
     function keyListener(event) {
         textAreaIntoForm.focus();
 
         console.log('Key: ', event.key);
+        console.log('Code: ', event.code);
         console.log('keyCode: ', event.keyCode);
         let ek = event.key;
+        let ec = event.code;
 
+        // shift + alt последовательное нажатие
+        INPUT.push(ec);
+        console.log(INPUT);
+
+        if (INPUT.length > 2) {
+            INPUT.length = 0;
+        };
+        if (INPUT.length === 2) {
+            if (INPUT[0] == 'AltLeft' && INPUT[1] == 'ShiftLeft') {
+                changeLanguage();
+                INPUT.length = 0;
+            }
+            else if (INPUT[0] == 'ShiftLeft' && INPUT[1] == 'AltLeft') {
+                changeLanguage();
+                INPUT.length = 0;
+            }
+            if (INPUT[0] == 'AltRight' && INPUT[1] == 'ShiftRight') {
+                changeLanguage();
+                INPUT.length = 0;
+            }
+            else if (INPUT[0] == 'ShiftRight' && INPUT[1] == 'AltRight') {
+                changeLanguage();
+                INPUT.length = 0;
+            }
+            else {
+                INPUT = [INPUT.pop()];
+            }
+        }
+    
+        
+        // сопоставляем клавиши физической и виртуальной клавиатуры 
         for (let i = 0; i < 13; i++) {
             if (ek == btnContent[i]['gen'] || ek == btnContent[i]['gen'].toLowerCase() || ek == btnContent[i]['sec'] || ek == btnContent[i]['sec'].toLowerCase()) {
                 buttonArr[i].classList.add('back');
-                
             }
         }
         for (let i = 15; i < 27; i++) {
             if (ek == btnContent[i]['gen'] || ek == btnContent[i]['gen'].toLowerCase() || ek == btnContent[i]['gen'].toUpperCase()  || ek == btnContent[i]['sec'] || ek == btnContent[i]['sec'].toLowerCase()) {
                 buttonArr[i].classList.add('back');
-                
             }
         }
         for (let i = 29; i < 40; i++) {
             if (ek == btnContent[i]['gen'] || ek == btnContent[i]['gen'].toLowerCase() || ek == btnContent[i]['gen'].toUpperCase()  || ek == btnContent[i]['sec'] || ek == btnContent[i]['sec'].toLowerCase()) {
                 buttonArr[i].classList.add('back');
-                
             }
         }
         for (let i = 44; i < 54; i++) {
             if (ek == btnContent[i]['gen'] || ek == btnContent[i]['gen'].toLowerCase() || ek == btnContent[i]['gen'].toUpperCase()  || ek == btnContent[i]['sec'] || ek == btnContent[i]['sec'].toLowerCase()) {
                 buttonArr[i].classList.add('back');
-                
             }
         }
         if (ek == 'Backspace') {
@@ -277,15 +393,6 @@
             buttonArr[67].classList.add('back');
         }
 
-        // toggle language
-        if (ek == 'Alt' && ek == 'Shift') {
-            buttonArr[58].classList.add('back');
-            buttonArr[65].classList.add('back');
-            buttonArr[42].classList.add('back');
-            buttonArr[55].classList.add('back'); 
-            
-            alert('hi')
-        }
     }
 
     // kill keyListener background

@@ -164,7 +164,7 @@ export let btnContent = [
     },
     {
         'gen': 'ENTER',
-        //'sec': '1'
+        //'sec': '1',
         'sym': `\n`
     },
     {
