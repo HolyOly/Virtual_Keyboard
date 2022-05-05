@@ -1,6 +1,6 @@
     import { btnContent } from './modules/variables.js';
     
-    let RuEn = document.getElementsByClassName('general-symbol');
+    //let RuEn = document.getElementsByClassName('general-symbol');
 
     window.onload = function() {
         if (localStorage.lang == 'true') {
@@ -10,7 +10,7 @@
     
     let count = 0;
     let arrText = [];
-    let arrTextUp = [];
+    // let arrTextUp = [];
     let strText = '';
     let counterCaps = 0;
  
@@ -151,6 +151,7 @@
 
         if (gs[18].classList.contains('changeLangGen') || ss[22].classList.contains('changeLangSec') ) {
             if (btnContent[tdID].sec == undefined) {
+                /* empty */
             }
             else {
                 char = btnContent[tdID].sec;
@@ -159,11 +160,11 @@
         
         if (!td) {
             arrText.push('');
-        }; 
+        }
         if (char.length > 1) {
             if (char == 'RU' || char == 'EN') {
                 changeLanguage();
-                reaIntoForm.value = arrText.join('');
+                textAreaIntoForm.value = arrText.join('');
             }
             if (char == 'SHIFT') {
                 char = btnContent[tdID].sym;
@@ -297,7 +298,7 @@
             textAreaIntoForm.value = arrText.join('');
         }
         //console.log(char);
-    };
+    }
 
 
     // shift + alt одновременное нажатие
@@ -367,11 +368,11 @@
     
 
     let INPUT = [];
-    let KEY = ['AltLeft', 'ShiftLeft']; 
-    let KEY_REVERSE = ['AltLeft', 'ShiftLeft']; 
+    // let KEY = ['AltLeft', 'ShiftLeft']; 
+    // let KEY_REVERSE = ['AltLeft', 'ShiftLeft']; 
 
-    let KEY_RIGHT = ['ShiftRight', 'AltRight']; 
-    let KEY_REVERSE_RIGHT = ['AltRight', 'ShiftRight'];
+    // let KEY_RIGHT = ['ShiftRight', 'AltRight']; 
+    // let KEY_REVERSE_RIGHT = ['AltRight', 'ShiftRight'];
 
     function keyListener(event) {
         textAreaIntoForm.focus();
@@ -388,7 +389,7 @@
 
         if (INPUT.length > 2) {
             INPUT.length = 0;
-        };
+        }
         if (INPUT.length === 2) {
             if (INPUT[0] == 'AltLeft' && INPUT[1] == 'ShiftLeft') {
                 changeLanguage();
@@ -444,7 +445,7 @@
         }
         if (ek == 'CapsLock') {
             if (buttonArr[28] == undefined) {
-
+                /* empty */
             }
             else {
                 buttonArr[28].classList.add('back');
@@ -497,7 +498,7 @@
     function keyListenerUP() {
         for (let i = 0; i < buttonArr.length; i++) {
             if (buttonArr[i] == undefined) {
-
+                /* empty */
             }
             else {
                 setTimeout(() => (buttonArr[i].classList.remove('back')), 300);
@@ -511,7 +512,7 @@
     document.addEventListener('keydown', keyListener);
     document.addEventListener('keyup', keyListenerUP);
 
-    let RU = gs[18].classList.contains('changeLangGen');
+    //let RU = gs[18].classList.contains('changeLangGen');
 
 
     textAreaIntoForm.value = arrText.join('');
