@@ -1,10 +1,19 @@
     import { btnContent } from './modules/variables.js';
     
+    let RuEn = document.getElementsByClassName('general-symbol');
+    console.log(RuEn);
+    window.onload = function() {
+        if (localStorage.lang == 'true') {
+            changeLanguage();
+        }
+    };
+    
     let count = 0;
     let arrText = [];
     let strText = '';
 
-    
+
+
     // create textarea
     let textArea = document.createElement('div');
     let formText = document.createElement('form');
@@ -108,6 +117,10 @@
     let arrRight = document.getElementById('69');
     arrRight.style.transform = "rotate(270deg)";
     
+    //Save to reload
+    
+    
+
    
     // add symbols by click
     keyBoardBlock.onclick = f;
@@ -115,9 +128,10 @@
         textAreaIntoForm.focus();
 
         let td = event.target.closest('.btn'); 
-        console.log(td.children);
         let tdID = td.getAttribute('id');
         let char = btnContent[tdID].gen;
+
+       
 
         if (gs[18].classList.contains('changeLangGen') || ss[22].classList.contains('changeLangSec') ) {
             if (btnContent[tdID].sec == undefined) {
@@ -131,6 +145,10 @@
             arrText.push('');
         }; 
         if (char.length > 1) {
+            if (char == 'RU' || char == 'EN') {
+                changeLanguage();
+                reaIntoForm.value = arrText.join('');
+            }
             if (char == 'SHIFT') {
                 char = btnContent[tdID].sym;
                 arrText.push(char.toLowerCase());
@@ -226,6 +244,9 @@
     }
 
     
+    
+
+
     function changeLanguage() {
         //alert("Привет!");
         buttonArr[58].classList.add('back');
@@ -240,36 +261,32 @@
             if (i == 27 || i == 28|| i == 40 || i == 42) {
                 gs[i].classList.add('general-symbol');
             }
-            else {gs[i].classList.toggle('changeLangGen');}
+            else {
+                gs[i].classList.toggle('changeLangGen');
+            }
             
         }
         for(let i = 15; i < ss.length; i++) {
             ss[i].classList.toggle('changeLangSec');
         }
-
-
+        
+        let curLang = ss[20].classList.contains('changeLangSec'); //RU == true/ EN == false
+        localStorage.lang = curLang;
+        if (localStorage.lang == 'true') {
+            gs[43].innerHTML = btnContent[43]['RU'];
+            gs[43].classList.add('changeLangSec');
+        }
+        if (localStorage.lang == 'false') {
+            gs[43].innerHTML = btnContent[43]['gen'];
+            gs[43].classList.remove('changeLangSec');
+        }
     }
+
     runOnKeys(
         changeLanguage,
         'AltLeft',
         'ShiftLeft'
     );
-    // runOnKeys(
-    //     changeLanguage,
-    //     'ShiftLeft',
-    //     'AltLeft'
-    // );
-    // runOnKeys(
-    //     changeLanguage,
-    //     'AltRight',
-    //     'ShiftRight'
-    // );
-    // runOnKeys(
-    //     changeLanguage,
-    //     'ShiftRight',
-    //     'AltRight'
-    // );
-    
     //
     
 
@@ -291,7 +308,7 @@
 
         // shift + alt последовательное нажатие
         INPUT.push(ec);
-        console.log(INPUT);
+        // console.log(INPUT);
 
         if (INPUT.length > 2) {
             INPUT.length = 0;
@@ -405,7 +422,8 @@
     document.addEventListener('keydown', keyListener);
     document.addEventListener('keyup', keyListenerUP);
 
-
+    let RU = gs[18].classList.contains('changeLangGen');
+    // console.log(RU);
 
     textAreaIntoForm.value = arrText.join('');
     console.log(arrText);

@@ -178,8 +178,8 @@ export let btnContent = [
         //'sec': '1'
     },
     {
-        'gen': '|',
-        //'sec': '~'
+        'gen': 'EN',
+        'RU': 'RU'
     },
     {
         'gen': 'Z',
