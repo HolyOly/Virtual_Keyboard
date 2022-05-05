@@ -1,7 +1,8 @@
     import { btnContent } from './modules/variables.js';
     
     let RuEn = document.getElementsByClassName('general-symbol');
-    console.log(RuEn);
+    //console.log(RuEn);
+
     window.onload = function() {
         if (localStorage.lang == 'true') {
             changeLanguage();
@@ -12,7 +13,9 @@
     let arrText = [];
     let strText = '';
 
+    //let enterInd = [];
 
+   
 
     // create textarea
     let textArea = document.createElement('div');
@@ -116,6 +119,9 @@
 
     let arrRight = document.getElementById('69');
     arrRight.style.transform = "rotate(270deg)";
+
+    let arrUp = document.getElementById('54');
+    let arrDn = document.getElementById('68');
     
     //Save to reload
     
@@ -187,7 +193,7 @@
                 
                 let caretPos = arrText.length - count;
 
-                console.log(count)
+                //console.log(count)
                 if (count > arrText.length) {
                     caretPos = 0;
                     count = 0;
@@ -206,6 +212,72 @@
                 if (count > arrText.length) {
                     caretPos = arrText.length;
                     count = arrText.length;
+                }
+                textAreaIntoForm.setSelectionRange(caretPos, caretPos);
+            }
+            if (char == btnContent[54].gen) {
+                // arrow UP
+                char = '';
+                textAreaIntoForm.value = arrText.join('');
+                textAreaIntoForm.focus();
+                
+                let enterInd = [];
+                for(let i = 0; i < arrText.length; i++) {
+                    if (arrText[i] == '\n') {
+                        enterInd[i] = i;
+                    }
+                }
+                enterInd = enterInd.filter(function (el) {
+                    return (el != null && el != "" || el === 0);
+                });
+                // console.log(enterInd);
+            
+                // console.log(count)
+                enterInd = enterInd.reverse();
+
+                let caretPos = enterInd[count - 1] - (arrText.length - enterInd[count - 1]);//count;
+ 
+                // console.log(count)
+                // console.log(enterInd);
+                if (caretPos <= 0) {
+                    caretPos = 0;
+                    // count = 0;
+                }
+                textAreaIntoForm.setSelectionRange(caretPos, caretPos);
+            }
+            if (char == btnContent[54].gen) {
+                // arrow Down
+                char = '';
+                textAreaIntoForm.value = arrText.join('');
+                textAreaIntoForm.focus();
+                
+                let enterInd = [];
+                for(let i = 0; i < arrText.length; i++) {
+                    if (arrText[i] == '\n') {
+                        enterInd[i] = i;
+                    }
+                }
+                enterInd = enterInd.filter(function (el) {
+                    return (el != null && el != "" || el === 0);
+                });
+                console.log(enterInd);
+            
+                console.log(count)
+                //enterInd = enterInd.reverse();
+
+                let caretPos = enterInd[count - 1];// + (arrText.length + enterInd[count - 1]);//count;
+ 
+                console.log(count)
+                console.log(enterInd);
+                
+                if (caretPos >= enterInd[enterInd.length - 1] || caretPos >= arrText[enterInd.length - 5]) {
+                    caretPos = enterInd[enterInd.length - 1];
+                    //count = arrText.length;
+                    count = enterInd.length - 1;
+                }
+                if (caretPos <= enterInd.length) {
+                    caretPos = 0;
+                    //count = 0;
                 }
                 textAreaIntoForm.setSelectionRange(caretPos, caretPos);
             }
@@ -428,15 +500,25 @@
     textAreaIntoForm.value = arrText.join('');
     console.log(arrText);
 
+    
+
     function counter() {
         count+=1;
     }
-    
     function counterR() {
         count-=1;
     }
+    function counterUp() {
+        count+=1;
+    }
+    function counterDn() {
+        count+=1;
+    }
+
     arrLeft.addEventListener('click', counter);
     arrRight.addEventListener('click', counterR);
+    arrUp.addEventListener('click', counterUp);
+    arrDn.addEventListener('click', counterDn);
 
 
 
