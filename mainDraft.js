@@ -1,7 +1,6 @@
     import { btnContent } from './modules/variables.js';
     
     let RuEn = document.getElementsByClassName('general-symbol');
-    //console.log(RuEn);
 
     window.onload = function() {
         if (localStorage.lang == 'true') {
@@ -11,8 +10,10 @@
     
     let count = 0;
     let arrText = [];
+    let arrTextUp = [];
     let strText = '';
-
+    let counterCaps = 0;
+ 
     //let enterInd = [];
 
    
@@ -94,7 +95,6 @@
             arrSecSym[i].setAttribute('sec', 'sec');
             arrSecSym[i].innerHTML = btnContent[i]['sec'];
             if (btnContent[i]['sec'] == undefined || btnContent[i]['sec'] == null) {
-                //arrSecSym[i].innerHTML !== btnContent[i]['sec'];
                 arrSecSym[i].removeAttribute('sec');
                 arrSecSym[i].innerHTML = '';
             }
@@ -122,11 +122,20 @@
 
     let arrUp = document.getElementById('54');
     let arrDn = document.getElementById('68');
-    
-    //Save to reload
-    
-    
 
+    let capsLock = document.getElementById('28');
+    
+    
+    function counterCapsLockClick() {
+        counterCaps +=1;
+        console.log(counterCaps);
+        if (counterCaps % 2 !== 0) {
+            document.getElementById('28').classList.add('backCapsLock');
+        }
+        if (counterCaps % 2 === 0) {
+            document.getElementById('28').classList.remove('backCapsLock');
+        }
+    }
    
     // add symbols by click
     keyBoardBlock.onclick = f;
@@ -181,8 +190,7 @@
                 textAreaIntoForm.value = arrText.join('');
             }
             if (char == 'Caps Lock') {
-                char = btnContent[tdID].sym;
-                arrText.push(char.toUpperCase());
+                char = '';
                 textAreaIntoForm.value = arrText.join('');
             }
             if (char == btnContent[67].gen) {
@@ -193,7 +201,6 @@
                 
                 let caretPos = arrText.length - count;
 
-                //console.log(count)
                 if (count > arrText.length) {
                     caretPos = 0;
                     count = 0;
@@ -230,18 +237,14 @@
                 enterInd = enterInd.filter(function (el) {
                     return (el != null && el != "" || el === 0);
                 });
-                // console.log(enterInd);
-            
-                // console.log(count)
+                
                 enterInd = enterInd.reverse();
 
                 let caretPos = enterInd[count - 1] - (arrText.length - enterInd[count - 1]);//count;
  
-                // console.log(count)
-                // console.log(enterInd);
+            
                 if (caretPos <= 0) {
                     caretPos = 0;
-                    // count = 0;
                 }
                 textAreaIntoForm.setSelectionRange(caretPos, caretPos);
             }
@@ -263,9 +266,8 @@
                 console.log(enterInd);
             
                 console.log(count)
-                //enterInd = enterInd.reverse();
 
-                let caretPos = enterInd[count - 1];// + (arrText.length + enterInd[count - 1]);//count;
+                let caretPos = enterInd[count - 1];
  
                 console.log(count)
                 console.log(enterInd);
@@ -282,13 +284,18 @@
                 textAreaIntoForm.setSelectionRange(caretPos, caretPos);
             }
         }
-        //if (!keyBoardBlock.contains(td)) {arrText.push('')}; // (3)
+        // if (!keyBoardBlock.contains(td)) {arrText.push('')}; // (3)
         else {
-            arrText.push(char.toLowerCase());
+            if (counterCaps % 2 !== 0) {
+                arrText.push(char.toUpperCase());
+            }
+            if (counterCaps % 2 === 0) {
+                arrText.push(char.toLowerCase());
+            }
             strText = strText + char;
             textAreaIntoForm.value = arrText.join('');
         }
-        console.log(char);
+        //console.log(char);
     };
 
 
@@ -320,14 +327,10 @@
 
 
     function changeLanguage() {
-        //alert("Привет!");
         buttonArr[58].classList.add('back');
         buttonArr[65].classList.add('back');
         buttonArr[42].classList.add('back');
         buttonArr[55].classList.add('back'); 
-
-        // let gs = document.getElementsByClassName('general-symbol');
-        // let ss = document.getElementsByClassName('secondary-symbol');
         
         for(let i = 15; i < 54; i++) {
             if (i == 27 || i == 28|| i == 40 || i == 42) {
@@ -353,6 +356,7 @@
             gs[43].classList.remove('changeLangSec');
         }
     }
+    
 
     runOnKeys(
         changeLanguage,
@@ -375,12 +379,12 @@
         console.log('Key: ', event.key);
         console.log('Code: ', event.code);
         console.log('keyCode: ', event.keyCode);
+        
         let ek = event.key;
         let ec = event.code;
 
         // shift + alt последовательное нажатие
         INPUT.push(ec);
-        // console.log(INPUT);
 
         if (INPUT.length > 2) {
             INPUT.length = 0;
@@ -495,10 +499,10 @@
     document.addEventListener('keyup', keyListenerUP);
 
     let RU = gs[18].classList.contains('changeLangGen');
-    // console.log(RU);
+
 
     textAreaIntoForm.value = arrText.join('');
-    console.log(arrText);
+    // console.log(arrText);
 
     
 
@@ -519,6 +523,9 @@
     arrRight.addEventListener('click', counterR);
     arrUp.addEventListener('click', counterUp);
     arrDn.addEventListener('click', counterDn);
+
+    capsLock.addEventListener('click', counterCapsLockClick);
+
 
 
 
