@@ -126,6 +126,7 @@
     let capsLock = document.getElementById('28');
     
     
+
     function counterCapsLockClick() {
         counterCaps +=1;
         console.log(counterCaps);
@@ -299,7 +300,6 @@
     };
 
 
-
     // shift + alt одновременное нажатие
     function runOnKeys(func, ...codes) {
         let pressed = new Set();
@@ -379,7 +379,7 @@
         console.log('Key: ', event.key);
         console.log('Code: ', event.code);
         console.log('keyCode: ', event.keyCode);
-        
+
         let ek = event.key;
         let ec = event.code;
 
@@ -443,7 +443,12 @@
             buttonArr[27].classList.add('back');
         }
         if (ek == 'CapsLock') {
-            buttonArr[28].classList.add('back');
+            if (buttonArr[28] == undefined) {
+
+            }
+            else {
+                buttonArr[28].classList.add('back');
+            }
         }
         if (ek == 'Enter') {
             buttonArr[40].classList.add('back');
@@ -491,9 +496,17 @@
     // kill keyListener background
     function keyListenerUP() {
         for (let i = 0; i < buttonArr.length; i++) {
+            if (buttonArr[i] == undefined) {
+
+            }
+            else {
                 setTimeout(() => (buttonArr[i].classList.remove('back')), 300);
+            }
+                
         }
     }
+
+   
 
     document.addEventListener('keydown', keyListener);
     document.addEventListener('keyup', keyListenerUP);
@@ -525,6 +538,12 @@
     arrDn.addEventListener('click', counterDn);
 
     capsLock.addEventListener('click', counterCapsLockClick);
+
+    function isCapsLock(event) {
+        let caps = event.getModifierState && event.getModifierState('CapsLock');
+        buttonArr[28] = caps ? document.getElementById('28').classList.remove('backCapsLock') :  document.getElementById('28').classList.add('backCapsLock');
+    }
+    document.addEventListener('keydown', isCapsLock);
 
 
 
