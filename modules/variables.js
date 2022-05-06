@@ -281,12 +281,10 @@ export let btnContent = [
     },
     {
         'gen': '&#9660;',
-        //'sec': '1'
     },
     {
         'gen': '&#9660;',
         'sym': 'right'
-        //'sec': '~'
     },
     {
         'gen': '!',

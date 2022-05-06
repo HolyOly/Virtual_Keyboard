@@ -1,0 +1,117 @@
+.kb-block {
+    display: grid;
+    grid-template-columns: repeat(14, 40px);
+    grid-template-rows: repeat(5, 40px);
+    gap: 15px 20px;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: space-around;
+    grid-auto-flow: row;
+    margin-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    width: 930px;
+    height: 270px;
+    background-color: rgba(185, 183, 183, 0.76);
+    border-radius: 5px;
+    box-shadow: -4px 4px 14px -2px rgba(34, 60, 80, 0.40);
+}
+.btn {
+    display: grid;
+    position: relative;
+    background-color: gray;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    align-items: center;
+    justify-items: center;
+    transition: 1s;
+    box-shadow: -4px 4px 14px -2px rgba(34, 60, 80, 0.60);
+    &:hover {
+        background-color: rgba(218, 218, 233, 0.11);
+    }
+}
+.general-symbol {
+    display: block;
+    position: absolute;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+.secondary-symbol {
+    display: block;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: black;
+    font-size: 0.8rem;
+}
+.changeLangGen {
+    font-weight: 300 !important;
+    color: rgba(19, 14, 14, 0.267) !important;
+}
+.changeLangSec {
+    font-weight: 500 !important;
+    color: rgb(133, 21, 21) !important;
+}
+.btn[id = "13"] {
+    width: 70px !important;
+}
+.btn[id = "14"] {
+    width: 70px !important;
+    margin-left: -20px;
+}
+.btn[id = "27"] {
+    width: 77px !important;
+}
+.btn[id = "28"] {
+    width: 80px !important;
+    margin-left: -30px;
+}
+.btn[id = "40"] {
+    width: 140px !important;
+    //margin-left: -50px;
+}
+.btn[id = "41"] {
+    opacity: 0;
+}
+.btn[id = "42"] {
+    width: 70px !important;
+    margin-left: -20px;
+}
+.btn[id = "55"] {
+    width: 70px !important;
+    //margin-left: -20px;
+}
+.btn[id = "59"] {
+    width: 350px !important;
+    &:hover {
+        background-color: rgba(218, 218, 233, 0.11);
+    }
+}
+.btn[id = "60"] {
+    opacity: 0;
+}
+.btn[id = "61"] {
+    opacity: 0;
+}
+.btn[id = "62"] {
+    opacity: 0;
+}
+.btn[id = "63"] {
+    opacity: 0;
+}
+.btn[id = "64"] {
+    opacity: 0;
+}
+.back {
+    background-color: rgba(50, 205, 179, 0.274);
+}
+.backCapsLock {
+    background-color: rgba(255, 0, 0, 0.144);
+}
