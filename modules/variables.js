@@ -53,11 +53,9 @@ export let btnContent = [
     },
     {
         'gen': 'Back space',
-        //'sec': '1'
     },
     {
         'gen': 'Tab',
-        //'sec': '1'
         'sym': '    ',
     },
     {
@@ -110,11 +108,9 @@ export let btnContent = [
     },
     {
         'gen': 'DEL',
-        // 'sec': '~'
     },
     {
         'gen': 'Caps Lock',
-        //'sec': '1'
         'sym': ''
 
     },
@@ -164,18 +160,15 @@ export let btnContent = [
     },
     {
         'gen': 'ENTER',
-        //'sec': '1',
         'sym': `\n`
     },
     {
         'gen': 'SHIFT',
         'sym': ''
-        //'sec': '1'
     },
     {
         'gen': 'SHIFT',
         'sym': ''
-        //'sec': '1'
     },
     {
         'gen': 'EN',
@@ -223,61 +216,47 @@ export let btnContent = [
     },
     {
         'gen': '&#9650;',
-        //'sec': '1'
     },
     {
         'gen': 'SHIFT',
-        //'sec': '~'
         'sym': ''
     },
     {
         'gen': 'Ctrl',
-        //'sec': '1'
     },
     {
         'gen': 'Win',
-        //'sec': '1'
     },
     {
         'gen': 'Alt',
-        //'sec': '~'
     },
     {
         'gen': ' ',
-        //'sec': '1'
     },
     {
         'gen': ' ',
-        //'sec': '1'
     },
     {
         'gen': ' ',
-        //'sec': '1'
     },
     {
         'gen': ' ',
-        //'sec': '1'
     },
     {
         'gen': ' ',
-        //'sec': '1'
     },
     {
         'gen': ' ',
-        //'sec': '1'
     },
     {
         'gen': 'Alt',
-        //'sec': '1'
     },
     {
         'gen': 'Ctrl',
-        //'sec': '~'
     },
     {
         'gen': '&#9660;',
         'sym': 'left'
-        //'sec': '1'
     },
     {
         'gen': '&#9660;',
